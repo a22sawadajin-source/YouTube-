@@ -23,7 +23,9 @@ description: YouTube動画を企画から投稿・分析まで工程1→9で明�
    - `visual-asset-collector`（`02_script.md` を渡す） → `04_assets/`
    - `thumbnail-designer`（`03_titles_thumbnails.md` を渡す） → `04_thumbnail.png`
 6. **工程5** `video-assembler` を呼び出す。`02_script.md`, `04_narration.mp3`,
-   `04_assets/` のパスを渡す。出力: `05_video.mp4`, `05_subtitles.srt`。
+   `04_assets/`, `04_assets_manifest.md` のパスを渡す。出力: `05_video.mp4`,
+   `05_subtitles.srt`, `05_measured_durations.json`, `05_visuals_manifest.json`,
+   `build_video.sh`。
 7. **工程6** `metadata-seo` を呼び出す。`01_research.md`, `02_script.md`,
    `03_titles_thumbnails.md`, `05_video.mp4` のパスを渡す。出力: `06_metadata.json`。
 8. **工程7** `qa-guardian` を呼び出す。`pipeline/<run_id>/` 全体を渡す。返答された

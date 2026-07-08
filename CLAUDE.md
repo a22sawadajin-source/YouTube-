@@ -56,6 +56,7 @@
 | `04_narration.mp3` | voice-synthesizer |
 | `04_assets/` | visual-asset-collector |
 | `04_thumbnail.png` | thumbnail-designer |
+| `05_measured_durations.json` / `05_visuals_manifest.json` / `05_subtitles.srt` / `build_video.sh` | video-assembler（中間成果物・再現用スクリプト） |
 | `05_video.mp4` | video-assembler |
 | `06_metadata.json` | metadata-seo |
 | `07_qa_report.md` | qa-guardian（`PASS` / `REJECT` を明記） |
@@ -68,6 +69,8 @@
 - **画像生成**: 任意の画像生成API（サムネ・挿絵） → `scripts/generate_image.sh`
 - **映像素材**: ストック動画API or 生成AI、または手持ち素材フォルダ → `scripts/fetch_stock_video.sh`
 - **合成**: `ffmpeg`（必須） → `scripts/assemble_video.sh`
+- **BGM**: `assets_library/bgm/`（著作権フリー/許諾済み音源を手動で配置。命名規則は
+  `assets_library/bgm/README.md` を参照）
 - **投稿**: YouTube Data API v3（OAuth 認証済みトークン） → `scripts/upload_youtube.sh`
 
 各APIキーは `.env`（`.env.example` を参照）に置き、Bashスクリプト経由で叩きます。

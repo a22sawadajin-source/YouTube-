@@ -48,7 +48,7 @@ PID_THUMB=$!
 wait "$PID_VOICE" "$PID_ASSETS" "$PID_THUMB"
 
 run_agent video-assembler \
-  "run_id=$RUN_ID。前工程の成果物: $PIPELINE_DIR/02_script.md, $PIPELINE_DIR/04_narration.mp3, $PIPELINE_DIR/04_assets/ を読み、出力先=$PIPELINE_DIR/05_video.mp4 に合成する。"
+  "run_id=$RUN_ID。前工程の成果物: $PIPELINE_DIR/02_script.md, $PIPELINE_DIR/04_narration.mp3, $PIPELINE_DIR/04_assets/, $PIPELINE_DIR/04_assets_manifest.md を読み、出力先=$PIPELINE_DIR/05_video.mp4 に合成する。"
 
 run_agent metadata-seo \
   "run_id=$RUN_ID。前工程の成果物: $PIPELINE_DIR/01_research.md, $PIPELINE_DIR/02_script.md, $PIPELINE_DIR/03_titles_thumbnails.md, $PIPELINE_DIR/05_video.mp4 を読み、出力先=$PIPELINE_DIR/06_metadata.json にメタデータを書く。"
