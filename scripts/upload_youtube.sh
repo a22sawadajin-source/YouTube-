@@ -16,7 +16,11 @@ for v in YOUTUBE_OAUTH_CLIENT_ID YOUTUBE_OAUTH_CLIENT_SECRET YOUTUBE_OAUTH_REFRE
 done
 
 TITLE=$(jq -r '.title' "$METADATA_PATH")
+HASHTAGS=$(jq -r '(.hashtags // []) | join(" ")' "$METADATA_PATH")
 DESCRIPTION=$(jq -r '.description' "$METADATA_PATH")
+if [ -n "$HASHTAGS" ]; then
+  DESCRIPTION="${DESCRIPTION}"$'\n\n'"${HASHTAGS}"
+fi
 TAGS_JSON=$(jq -c '.tags' "$METADATA_PATH")
 CATEGORY=$(jq -r '.category // "22"' "$METADATA_PATH")
 VIDEO_PATH=$(jq -r '.video_path' "$METADATA_PATH")
