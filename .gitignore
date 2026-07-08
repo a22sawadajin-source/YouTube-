@@ -1,0 +1,10 @@
+.env
+pipeline/*/04_narration.mp3
+pipeline/*/04_assets/
+pipeline/*/05_video.mp4
+pipeline/*/04_thumbnail*.png
+*.mp4
+*.mp3
+*.png
+!.claude/**
+.DS_Store
