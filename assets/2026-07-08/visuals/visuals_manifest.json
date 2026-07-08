@@ -1,0 +1,96 @@
+{
+  "manifest_version": "1.0",
+  "project": "AI History Introduction",
+  "date": "2026-07-08",
+  "description": "Visual assets manifest for scenes 01-03 of the AI history documentary",
+  "scenes": {
+    "scene_01": {
+      "scene_number": 1,
+      "description": "Dartmouth Conference image: monochrome vintage conference room with blackboard showing mathematical equations",
+      "source_type": "stock",
+      "keyword_or_prompt": "Dartmouth conference 1956 meeting room mathematics blackboard vintage academic",
+      "fallback_generation": {
+        "source_type": "imagegen",
+        "keyword_or_prompt": "Black and white vintage 1956 conference room with researchers and mathematicians writing equations on blackboard, historical academic setting, monochrome"
+      },
+      "target_filename": "scene_01_dartmouth_conference.png",
+      "resolution": "1920x1080",
+      "aspect_ratio_policy": "16:9 center-crop (if original aspect differs)",
+      "content_type": "image",
+      "duration_seconds": null,
+      "status": "pending_acquisition",
+      "license_note": "Must use public domain, CC0, or explicitly royalty-free images. No rights-uncertain content.",
+      "acquisition_notes": "Priority: stock image of 1950s academic/conference setting with blackboard. If unavailable, generate via imagegen. Must convey historical authenticity and mathematical context."
+    },
+    "scene_02": {
+      "scene_number": 2,
+      "description": "Line chart animation showing AI boom and bust cycles: alternating peaks (boom) and valleys (bust)",
+      "source_type": "imagegen",
+      "keyword_or_prompt": "AI history boom and bust cycle line chart with multiple peaks and valleys, growth and decline alternating pattern, professional dark background, statistical graph visualization",
+      "fallback_generation": null,
+      "target_filename": "scene_02_boom_bust_graph.png",
+      "resolution": "1920x1080",
+      "aspect_ratio_policy": "16:9 center-pad (if needed to fit chart)",
+      "content_type": "image",
+      "duration_seconds": null,
+      "status": "pending_acquisition",
+      "license_note": "Generated image - no licensing concerns. Ensure readable data labels and professional appearance.",
+      "acquisition_notes": "Generate via imagegen. Chart should show at least 3-4 complete boom/bust cycles to illustrate the pattern. Include clear axis labels and legend if applicable."
+    },
+    "scene_03": {
+      "scene_number": 3,
+      "description": "B-roll composite: people using smartphones for chatbot AI (foreground) overlaid with modern urban cityscape (background)",
+      "sub_assets": [
+        {
+          "sub_asset_id": "scene_03a",
+          "description": "B-roll footage: people using smartphones, chatbot/mobile app interaction, conversational AI usage",
+          "source_type": "stock",
+          "keyword_or_prompt": "people using smartphone chatbot AI conversation mobile app interaction, close-up hands, modern lifestyle",
+          "fallback_generation": null,
+          "target_filename": "scene_03a_mobile_chatai_broll.mp4",
+          "resolution": "1920x1080",
+          "aspect_ratio_policy": "16:9 center-crop or center-pad",
+          "content_type": "video",
+          "duration_seconds": 5,
+          "status": "pending_acquisition",
+          "license_note": "Must allow commercial reuse. CC-BY, CC-BY-SA, or commercial royalty-free stock preferred. No rights-uncertain content.",
+          "acquisition_notes": "Seek B-roll with diverse demographics, modern urban or casual settings. Footage should show clear interaction with mobile devices."
+        },
+        {
+          "sub_asset_id": "scene_03b",
+          "description": "Background: modern urban cityscape with contemporary architecture, daytime or evening lighting",
+          "source_type": "stock",
+          "keyword_or_prompt": "modern urban city skyline contemporary architecture bustling lifestyle, daytime or evening",
+          "fallback_generation": {
+            "source_type": "imagegen",
+            "keyword_or_prompt": "Modern urban cityscape with tall contemporary buildings, vibrant city life, daytime lighting, skyline view"
+          },
+          "target_filename": "scene_03b_city_background.mp4",
+          "resolution": "1920x1080",
+          "aspect_ratio_policy": "16:9 center-crop or center-pad",
+          "content_type": "video",
+          "duration_seconds": 5,
+          "status": "pending_acquisition",
+          "license_note": "Must allow commercial reuse. CC-BY, CC-BY-SA, or commercial royalty-free stock preferred.",
+          "acquisition_notes": "Seek dynamic cityscape footage that can serve as subtle background layer. Slower pans or static shots work best for overlay composition."
+        }
+      ],
+      "composite_notes": "Scene 03 requires compositing: overlay scene_03a (people + mobile) on top of scene_03b (cityscape) with appropriate blending mode (e.g., screen, overlay) and opacity adjustment. Timing should sync with narration.",
+      "status": "pending_acquisition"
+    }
+  },
+  "acquisition_workflow": {
+    "step_1_library_search": "Check assets_library/ for existing clips matching keywords (currently empty)",
+    "step_2_stock_search": "Run tools/stock.sh with provided keywords for each scene",
+    "step_3_generation": "If stock unavailable, run tools/imagegen.sh with provided prompts",
+    "step_4_validation": "Verify resolution 1920x1080 minimum, aspect ratio compliance, no copyrighted/identifiable content",
+    "step_5_placement": "Move acquired assets to assets/2026-07-08/visuals/ with target_filename",
+    "step_6_manifest_update": "Update status from 'pending_acquisition' to 'acquired' once files are placed"
+  },
+  "quality_requirements": {
+    "minimum_resolution": "1920x1080",
+    "aspect_ratio": "16:9 (or convertible to 16:9 via crop/pad)",
+    "licensing": "Public domain, CC0, CC-BY, CC-BY-SA, or explicit commercial-use permission only. No ambiguous licenses.",
+    "forbidden_content": "No identifiable logos, real people's faces, third-party copyrighted materials, watermarks in final assets"
+  }
+}
