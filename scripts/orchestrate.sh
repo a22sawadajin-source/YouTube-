@@ -24,8 +24,13 @@ run_agent() {
   echo "=== [$agent] 完了 ==="
 }
 
+FEEDBACK_HINT=""
+if [ -f "feedback/latest.md" ]; then
+  FEEDBACK_HINT=" 前回の分析フィードバック=feedback/latest.md を必ず読み、企画に反映すること。"
+fi
+
 run_agent trend-researcher \
-  "run_id=$RUN_ID, 出力先=$PIPELINE_DIR/01_research.md。テーマ指定: ${TOPIC:-指定なし（あなたが選定）}"
+  "run_id=$RUN_ID, 出力先=$PIPELINE_DIR/01_research.md。テーマ指定: ${TOPIC:-指定なし（あなたが選定）}。${FEEDBACK_HINT}"
 
 run_agent script-writer \
   "run_id=$RUN_ID。前工程の成果物: $PIPELINE_DIR/01_research.md を読み、出力先=$PIPELINE_DIR/02_script.md に台本を書く。"
@@ -65,6 +70,6 @@ run_agent publisher \
   "run_id=$RUN_ID。$PIPELINE_DIR/07_qa_report.md が PASS であることを確認した上で、$PIPELINE_DIR/06_metadata.json を使ってアップロードする。"
 
 run_agent analytics-optimizer \
-  "run_id=$RUN_ID。直近以前に公開した run があれば、その 08_publish_result.json を対象に分析し、$PIPELINE_DIR/09_analytics_feedback.md に次回企画への指示をまとめる。"
+  "run_id=$RUN_ID。直近以前に公開した run があれば、その 08_publish_result.json を対象に分析し、$PIPELINE_DIR/09_analytics_feedback.md と feedback/latest.md（次回 trend-researcher が読む、上書き）の両方に次回企画への指示をまとめる。"
 
 echo "パイプライン完了: $PIPELINE_DIR"

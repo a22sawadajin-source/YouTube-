@@ -24,7 +24,9 @@
  6. metadata-seo                 … 概要欄・タグ・チャプター
  7. qa-guardian                  … 品質＋ポリシー審査（公開ゲート）★ここで止められる
  8. publisher                    … YouTube Data API でアップロード/予約投稿
- 9. analytics-optimizer          … 数値分析 → 次回企画へフィードバック
+ 9. analytics-optimizer          … 数値分析 → 次回企画へフィードバック（`feedback/latest.md`）
+        │
+        └──▶ 次回実行の 1. trend-researcher が `feedback/latest.md` を読み込む（ループを閉じる）
 ```
 
 ## 設計上の3原則
@@ -61,6 +63,13 @@
 | `07_qa_report.md` | qa-guardian（`PASS` / `REJECT` を明記） |
 | `08_publish_result.json` | publisher |
 | `09_analytics_feedback.md` | analytics-optimizer |
+
+さらに `analytics-optimizer` は `pipeline/<run_id>/09_analytics_feedback.md` とは別に、
+リポジトリ直下の **`feedback/latest.md`** を毎回上書きします。これは run_id を跨いで
+参照される唯一のファイルで、次回実行時に `trend-researcher`（工程1）が読み込むことで
+「公開結果 → 次回企画」のフィードバックループを閉じます。`pipeline/<run_id>/` 側の
+ファイルが各runの詳細な記録（履歴）、`feedback/latest.md` が「直近最新のみ」を持つ
+サマリという役割分担です。
 
 ## 必要な外部ツール／API（Claude Code本体とは別に用意）
 

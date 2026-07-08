@@ -13,7 +13,8 @@ description: YouTube動画を企画から投稿・分析まで工程1→9で明�
 
 1. `run_id` を `date +%Y-%m-%d_%H%M` で決定し、`pipeline/<run_id>/` を作成する。
 2. **工程1** `trend-researcher` を呼び出す。テーマ指定（`$ARGUMENTS`）と
-   `pipeline/<run_id>/` を渡す。出力: `01_research.md`。
+   `pipeline/<run_id>/` を渡す。`feedback/latest.md` が存在すればそのパスも渡し、
+   前回の分析フィードバックを踏まえて企画するよう指示する。出力: `01_research.md`。
 3. **工程2** `script-writer` を呼び出す。`01_research.md` のパスを渡す。
    出力: `02_script.md`。
 4. **工程3** `title-thumbnail-strategist` を呼び出す。`02_script.md` のパスを渡す。
@@ -37,7 +38,8 @@ description: YouTube動画を企画から投稿・分析まで工程1→9で明�
     パスを渡す。出力: `08_publish_result.json`。
 11. **工程9** `analytics-optimizer` を呼び出す。今回は直近公開分の分析データがまだ
     無いため、代わりに**前回以前の run**（あれば）の `08_publish_result.json` を対象に
-    分析を行うよう指示する。出力: `09_analytics_feedback.md`。
+    分析を行うよう指示する。出力: `09_analytics_feedback.md` と `feedback/latest.md`
+    （後者は次回の trend-researcher が読む、常に上書きするフィードバックループ用ファイル）。
 
 ## 完了報告
 
